@@ -21,4 +21,5 @@ import {DxButtonModule, DxDataGridModule} from "devextreme-angular";
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

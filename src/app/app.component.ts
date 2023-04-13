@@ -20,6 +20,5 @@ export class AppComponent implements OnInit {
       this.data = res
       this.dataSource = this.data.results
     })
-
   }
 }

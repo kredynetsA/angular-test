@@ -6,11 +6,12 @@ import {DataService} from "./services/data.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'angular-test';
   dataSource: any;
   data: any;
+
   constructor(private dataService: DataService) {
   }
 
@@ -19,12 +20,6 @@ export class AppComponent implements OnInit{
       this.data = res
       this.dataSource = this.data.results
     })
-
-  constructor() {
-
-
-  }
-  ngOnInit() {
 
   }
 }

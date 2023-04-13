@@ -1,0 +1,14 @@
+<div class="checkbox-wrapper">
+  <div class="form-check" *ngFor="let c of checkboxes">
+    <input class="form-check-input"
+           type="checkbox" value=""
+           id="{{c.title}}" (change)="onCheckboxChange($event, c)" [checked]="c.isChecked" >
+    <label class="form-check-label checkbox-label" for="{{c.title}}">
+      {{c.title}}
+    </label>
+  </div>
+
+
+</div>
+
+

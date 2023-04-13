@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 
 import {HttpClientModule} from "@angular/common/http";
 import {DxButtonModule, DxDataGridModule} from "devextreme-angular";
+import { CheckboxFilterComponent } from './components/checkbox-filter/checkbox-filter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CheckboxFilterComponent
   ],
   imports: [
     BrowserModule,

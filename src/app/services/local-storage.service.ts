@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-
-  // checkboxes: any = ['gender', 'city', 'street', 'email', 'phone']
+  isCity = new BehaviorSubject<boolean>(true);
+  isStreet = new BehaviorSubject<boolean>(true);
   checkboxes: any = [
     {
       title: 'gender',
@@ -28,31 +29,28 @@ export class LocalStorageService {
       isChecked: false
     },
   ]
-  data: any;
 
-  storage: any;
   constructor() {
-    this.storage = this.getStorage();
-    if(!this.storage) {
+    const storage = this.getStorage();
+    if(!storage) {
       this.setToStorage(this.checkboxes)
     }
-
   }
   setToStorage(storage: any) {
     localStorage.setItem('filters', JSON.stringify(storage))
   }
   getStorage() {
-    this.data = localStorage.getItem('filters')
-    return JSON.parse(this.data)
+    const data: any = localStorage.getItem('filters')
+    return JSON.parse(data)
   }
   updateStorage(storageItem: any) {
-    this.storage = this.getStorage()
-    this.storage.forEach((c:any) => {
+    const storage = this.getStorage()
+    storage.forEach((c:any) => {
       if (c.title == storageItem.title) {
         c.isChecked = storageItem.isChecked
       }
     })
-    this.setToStorage(this.storage)
+    this.setToStorage(storage)
   }
 
   getFilters() {
@@ -63,7 +61,17 @@ export class LocalStorageService {
         filters.push(c.title)
       }
     })
-    return filters.toString()
+    if (!filters.includes('city')) {
+      this.isCity.next(false)
+    } else {
+      this.isCity.next(true)
+    }
+    if (!filters.includes('street')) {
+      this.isStreet.next(false)
+    } else {
+      this.isStreet.next(true)
+    }
+    return filters
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LocalStorageService} from "../../services/local-storage.service";
 import {DataService} from "../../services/data.service";
 
@@ -8,13 +8,10 @@ import {DataService} from "../../services/data.service";
   styleUrls: ['./checkbox-filter.component.scss']
 })
 export class CheckboxFilterComponent implements OnInit {
-
+  @Output() onChanged = new EventEmitter<any>();
   isChecked: boolean = true;
-  checkboxes: any ;
-  constructor(private storageService: LocalStorageService, private dataService: DataService) {
-
-  }
-
+  checkboxes: any;
+  constructor(private storageService: LocalStorageService) {}
   ngOnInit(): void {
     this.checkboxes = this.storageService.getStorage()
   }
@@ -22,10 +19,7 @@ export class CheckboxFilterComponent implements OnInit {
     checkbox.isChecked = event.target.checked
     this.storageService.updateStorage(checkbox)
     const filters: string = this.storageService.getFilters()
-    // this.dataService.getFilteredData(filters).subscribe((res) => {
-    //
-    // })
-
+    this.onChanged.emit(filters)
   }
 
 }

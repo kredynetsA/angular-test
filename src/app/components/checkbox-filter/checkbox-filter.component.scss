@@ -1,8 +1,11 @@
 .checkbox-wrapper {
+  border: 1px solid #00000038;
+  padding: 10px 15px;
   margin: 20px 0;
-  width: 70%;
+  width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  border-radius: 10px;
 }
 .checkbox-label {
   text-transform: capitalize;
